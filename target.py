@@ -77,11 +77,11 @@ class Shot():
 
     def getColor(self):
         if self.teiler <= 251.0:
-            return 'red'
+            return '#ff0000bb'
         elif self.teiler <= 500.0:
-            return 'yellow'
+            return '#ffff00bb'
         else:
-            return 'white'
+            return '#ffffffbb'
 
     def getValue(self, tenth=False):
         value = round(self.teiler / (-250.4829786 ) + 10.97176989,1)  #Estimated linear function but is not equal reality
@@ -99,11 +99,11 @@ class Shot2(Shot):
 
     def getColor(self):
         if self.value >= 10.0:
-            return 'red'
+            return '#ff0000bb'
         elif self.value >= 9.0:
-            return 'yellow'
+            return '#ffff00bb'
         else:
-            return 'white'
+            return '#ffffffbb'
 
     def getValue(self, tenth=False):
         if tenth:
@@ -113,7 +113,7 @@ class Shot2(Shot):
 
 
 class Target():
-    def __init__(self, width, height, noOfShots = 0, type='b', headline = ''):
+    def __init__(self, width, height, noOfShots = 0, type='b', headline = '', transparent = True):
 
         self.tenthMM2PixelFactor = width / 5000 #50.00 mm
         self.midx = width  // 2 / self.tenthMM2PixelFactor
@@ -147,8 +147,10 @@ class Target():
         # self.canvas = Image.fromarray(np.asarray(self.canvas)+noise)
         # self.canvas.alpha_composite(self.test)
         # self.test.show()
-        
-        self.draw = ImageDraw.Draw(self.canvas)
+        if transparent:
+            self.draw = ImageDraw.Draw(self.canvas, 'RGBA')
+        else:
+            self.draw = ImageDraw.Draw(self.canvas, 'RGB')
 
         # draw headline text
         if headline:
@@ -161,9 +163,9 @@ class Target():
         # draw logo
         drawLogo(self.canvas, self.tenthMM2PixelFactor)
   
-    def getJpg(self):
+    def getPicture(self, format='PNG'):
         temp = io.BytesIO()
-        self.canvas.save(temp, format="JPEG")
+        self.canvas.save(temp, format=format)
         return temp.getvalue()
         
     def drawShot(self, shot):
