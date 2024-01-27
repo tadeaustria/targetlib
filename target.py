@@ -55,7 +55,7 @@ def drawLogo(image:Image, factor):
     ImageWidth= 750
     ImageBorder = 50
     logo = Image.open(Path(__file__).with_name('schuetzenlogo.png'))
-    logo.thumbnail(toPixel((ImageWidth, ImageWidth),factor), Image.ANTIALIAS)
+    logo.thumbnail(toPixel((ImageWidth, ImageWidth),factor), Image.LANCZOS)
     # image.paste(thumb, toPixel((image.height//factor - ImageWidth - ImageBorder, ImageBorder, image.height//factor - ImageBorder, ImageHeight + ImageBorder), factor), logo)
     image.paste(logo, toPixel((image.width//factor - ImageWidth - ImageBorder, ImageBorder), factor), logo)
 
