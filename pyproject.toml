@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "targetlib"
+version = "1.0.0"
+authors = [
+  { name="Tade Barthler", email="tade_tirol@hotmail.com" },
+]
+description = "A library to create targeting images, for shooting results"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = ["numpy", "pillow"]
+
+[project.urls]
+Homepage = "https://github.com/tadeaustria/target_lib"
+Issues = "https://github.com/tadeaustria/target_lib/issues"
+
+[tool.setuptools]
+packages = ["targetlib"]
