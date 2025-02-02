@@ -2,7 +2,7 @@
 from PIL import Image, ImageDraw, ImageFont
 import io, math, numpy as np
 from operator import attrgetter
-from numpy.core.numeric import NaN
+# from numpy.core.numeric import NaN
 from pathlib import Path
 
 def toPixel(mms, factor):
